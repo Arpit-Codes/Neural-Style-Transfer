@@ -11,8 +11,7 @@ from tensorflow.keras.optimizers.schedules import ExponentialDecay
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-import cv2
-import PIL
+
 
 
 # In[3]:
@@ -48,7 +47,7 @@ class NeuralStyleTransfer:
     #utility function to preprocess images  
     def preprocess(self, img):
 
-        img = cv2.resize(img, (self.w,self.h))
+        img = tf.keras.preprocessing.image.smart_resize(img, (self.w,self.h))
         img = np.expand_dims(img, axis=0)
         img = vgg19.preprocess_input(img)
         img = tf.convert_to_tensor(img)
@@ -133,6 +132,8 @@ class NeuralStyleTransfer:
         for i in range(iterations):
             loss, grad = self.compute_gradient(content, style, generated, alpha, beta, gamma)
             self.optimizer.apply_gradients([(grad, generated)])
+            if i%10 == 0:
+                print('Iteration : %d | Loss : %.2f'%(i, loss))
             
         return self.restore(generated.numpy())
 
