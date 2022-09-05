@@ -2,9 +2,7 @@ fastapi
 uvicorn
 pydantic
 pickle5
-scikit-learn
 numpy
-matplotlib
 opencv-python
 tensorflow
 
