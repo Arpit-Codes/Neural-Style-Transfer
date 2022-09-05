@@ -6,7 +6,6 @@
 
 #importing all the necessary libraries
 from tensorflow.keras.applications import vgg19
-from tensorflow.keras import Model
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.optimizers.schedules import ExponentialDecay
 import matplotlib.pyplot as plt
@@ -21,16 +20,15 @@ import PIL
 
 class NeuralStyleTransfer:
     
-    def __init__(self):
+    def __init__(self, model):
         self.h, self.w, self.c = (600,600,3)
         
         #loading vgg19 model and creating feature extractor
-        model = vgg19.VGG19(include_top= False, weights = 'imagenet')
-        layers = dict([(layer.name, layer.output) for layer in model.layers])
-        self.feature_extractor = Model(inputs= model.input, outputs=layers)
+        
         
         #creating SGD optimizer
         self.optimizer = SGD(ExponentialDecay(initial_learning_rate=100.0, decay_steps=100, decay_rate=0.96))
+        self.feature_extractor = model 
 
 
         #defining activation layers for content and style
