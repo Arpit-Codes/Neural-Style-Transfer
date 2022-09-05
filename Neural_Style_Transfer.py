@@ -8,7 +8,7 @@
 from tensorflow.keras.applications import vgg19
 from tensorflow.keras.optimizers import SGD
 from tensorflow.keras.optimizers.schedules import ExponentialDecay
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 
