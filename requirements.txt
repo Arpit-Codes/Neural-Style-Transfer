@@ -1,7 +1,6 @@
 fastapi
 uvicorn
 pydantic
-pickle5
 numpy
 opencv-python
 tensorflow
