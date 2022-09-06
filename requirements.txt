@@ -3,3 +3,5 @@ uvicorn
 pydantic
 tensorflow
 numba 
+nest-asyncio
+pyngrok
