@@ -19,13 +19,11 @@ import tensorflow as tf
 
 class NeuralStyleTransfer:
     
-    def __init__(self):
+    def __init__(self, model):
         self.h, self.w, self.c = (600,600,3)
         
         #loading vgg19 model and creating feature extractor
-        model = vgg19.VGG19(include_top= False, weights = 'imagenet')
-        layers = dict([(layer.name, layer.output) for layer in model.layers])
-        self.feature_extractor = Model(inputs= model.input, outputs=layers)
+        self.feature_extractor = model
         
         #creating SGD optimizer
         self.optimizer = SGD(ExponentialDecay(initial_learning_rate=100.0, decay_steps=100, decay_rate=0.96))
