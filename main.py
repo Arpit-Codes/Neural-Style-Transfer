@@ -10,6 +10,9 @@ from pydantic import BaseModel, validator
 from pydantic.dataclasses import dataclass
 from Neural_Style_Transfer import NeuralStyleTransfer
 from tensorflow.keras.models import load_model
+from pyngrok import ngrok 
+import uvicorn
+import nest_asyncio
 from numba import jit, cuda
 import numpy as np 
 import pickle
@@ -71,6 +74,10 @@ def stylize(input_parameters : model_input):
     
 
     return json.dumps(op)
+
+ngrok_tunnel = ngrok.connect(8080)
+print('Public URL:', ngrok_tunnel.public_url)
+nest_asyncio.apply()
     
 
 
