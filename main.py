@@ -10,6 +10,7 @@ from pydantic import BaseModel, validator
 from pydantic.dataclasses import dataclass
 from Neural_Style_Transfer import NeuralStyleTransfer
 from tensorflow.keras.models import load_model
+from numba import jit, cuda
 import numpy as np 
 import pickle
 import json
@@ -62,6 +63,8 @@ def stylize(input_parameters : model_input):
     
     model = load_model("Model.h5")
     obj = NeuralStyleTransfer(model)
+    
+    @jit(target_backend='cuda')
     img = obj.run(iterations, content, style, alpha, beta, gamma)
     
     op = {'image': img.tolist()}
