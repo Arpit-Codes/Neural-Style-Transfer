@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, validator
 from pydantic.dataclasses import dataclass
 from Neural_Style_Transfer import NeuralStyleTransfer
-# from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model
 import numpy as np 
 import pickle
 import json
@@ -60,8 +60,8 @@ def stylize(input_parameters : model_input):
     beta = input_dictionary['beta']
     gamma = input_dictionary['gamma']
     
-   
-    obj = NeuralStyleTransfer()
+    model = load_model("Model.h5")
+    obj = NeuralStyleTransfer(model)
     img = obj.run(iterations, content, style, alpha, beta, gamma)
     
     op = {'image': img.tolist()}
