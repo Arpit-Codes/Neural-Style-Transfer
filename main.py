@@ -67,7 +67,7 @@ def stylize(input_parameters : model_input):
     model = load_model("Model.h5")
     obj = NeuralStyleTransfer(model)
     
-    @jit(target_backend='cuda')
+#     @jit(target_backend='cuda')
     img = obj.run(iterations, content, style, alpha, beta, gamma)
     
     op = {'image': img.tolist()}
