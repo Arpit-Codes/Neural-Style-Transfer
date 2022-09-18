@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'NeuralStyleTransfer'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C6A493E24F584FE3A64F383BB0317DED }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_149A0C73AD024CD5BFDF62AE335C812D }}
