@@ -51,7 +51,7 @@ class model_input(BaseModel):
 # In[10]:
 
 
-@app.post('/')
+@app.post('/NST')
 def stylize(input_parameters : model_input):
     
     input_data = input_parameters.json()
